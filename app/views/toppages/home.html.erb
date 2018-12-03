@@ -1,2 +1,8 @@
-<h1>Toppages#home</h1>
-<p>Find me in app/views/toppages/home.html.erb</p>
+<% if current_user %>
+  <h3><%= "You are logged in as @#{@user.nickname}"%></h3>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to TWTR CLIENT</h1>
+    <%= link_to "Login with Twitter", '/auth/twitter', class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

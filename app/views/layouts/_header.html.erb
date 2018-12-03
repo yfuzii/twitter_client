@@ -1,0 +1,16 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "twtr client", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path %></li>
+        <% if current_user %>
+          <li><%= link_to "Likes", '#' %></li>
+          <li><%= link_to "Logout", logout_path %>
+        <% else %>
+          <li><%= link_to "Login", '/auth/twitter' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
