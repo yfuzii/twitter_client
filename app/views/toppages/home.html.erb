@@ -1,5 +1,8 @@
 <% if current_user %>
-  <%= render 'toppages/timeline'%>
+  <div class="col-md-3 container sidebar">
+    <%= render 'toppages/profile' %>
+  </div>
+  <%= render 'toppages/timeline' %>
 <% else %>
   <div class="center jumbotron">
     <h1>Welcome to TWTR CLIENT</h1>

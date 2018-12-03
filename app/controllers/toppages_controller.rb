@@ -3,7 +3,7 @@ class ToppagesController < ApplicationController
 
   def home
     if current_user
-      @user = current_user
+      @user = @client.user
       @tweets = @client.home_timeline(include_entitles: true)
     end
   end

@@ -1,0 +1,23 @@
+<div class="well well-sm">
+  <%= image_tag("#{@user.profile_banner_uri_https}", class: "img-responsive") %>
+  <%= link_to image_tag("#{@user.profile_image_uri_https}", class: "profile-image"), "https://twitter.com/#{@user.screen_name}", :target=>["_blank"] %> <br>
+  <%= @user.name %><br>
+  @<%= @user.screen_name %><br>
+  <div>
+    <span class="col-xs-4">
+      Tweets<br>
+      <%= @user.tweets_count %>
+    </span>
+    <span class="col-xs-4">
+      Following<br>
+      <%= @user.friends_count %>
+    </span>
+    <span class="col-xs-4">
+      Followers<br>
+      <%= @user.followers_count %>
+    </span>
+  </div><br>
+  <%= @user.description %>
+  <%= @user.location %><br>
+  <%= @user.website %><br>
+</div>
