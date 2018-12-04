@@ -1,23 +1,28 @@
-<div class="col-md-9 ">
-    <% @tweets.each do |tweet| %>
-      <div class="post-panel well well-sm">
-        <div class="tweet-image">
-          <%= link_to image_tag("#{tweet.user.profile_image_url_https}"), "https://twitter.com/#{tweet.user.screen_name}", :target=>["_blank"] %>
-        </div>
-        <div class="post">
-          <%= tweet.user.name %> @<%= tweet.user.screen_name %><br>
-          <%= tweet.text %><br>
-          <div class="post-image">
-            <% if tweet.media? %>
-              <% tweet.media.each do |media| %>
-                <%= image_tag("#{media.media_url_https}:thumb") %>
-              <% end %>
-            <% end %>
-          </div>
-          RT <%= tweet.retweet_count %> Like <%= tweet.favorite_count %><br>
-          <%= link_to tweet.created_at, "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}", :target=>["_blank"] %>
-          <%= render 'toppages/save_button', tweet: tweet %>
-        </div>
-      </div>
-    <% end %>
+<% unless @new_tweets.empty? %>
+  <div class="col-md-9 text-center post-panel well well-sm">
+    <h3><%= link_to "See #{@new_tweets.count} new Tweets.", root_path %></h3>
   </div>
+<% end %>
+<div class="col-md-9">
+  <% @tweets.each do |tweet| %>
+    <div class="post-panel well well-sm">
+      <div class="tweet-image">
+        <%= link_to image_tag("#{tweet.user.profile_image_url_https}"), "https://twitter.com/#{tweet.user.screen_name}", :target=>["_blank"] %>
+      </div>
+      <div class="post">
+        <%= tweet.user.name %> @<%= tweet.user.screen_name %><br>
+        <%= tweet.text %><br>
+        <div class="post-image">
+          <% if tweet.media? %>
+            <% tweet.media.each do |media| %>
+              <%= image_tag("#{media.media_url_https}:thumb") %>
+            <% end %>
+          <% end %>
+        </div>
+        RT <%= tweet.retweet_count %> Like <%= tweet.favorite_count %><br>
+        <%= link_to tweet.created_at, "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}", :target=>["_blank"] %>
+        <%= render 'toppages/save_button', tweet: tweet %>
+      </div>
+    </div>
+  <% end %>
+</div>

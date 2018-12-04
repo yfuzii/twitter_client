@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_04_115345) do
+ActiveRecord::Schema.define(version: 2018_12_04_122143) do
 
   create_table "likes", force: :cascade do |t|
     t.string "tweet_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2018_12_04_115345) do
     t.integer "login_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "acquired_at"
   end
 
 end

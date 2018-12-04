@@ -4,8 +4,11 @@ class ToppagesController < ApplicationController
   def home
     if current_user
       @user = @client.user
-      @tweets = @client.home_timeline(include_entitles: true)
+      @all_tweets = @client.home_timeline(include_entitles: true)
+      @new_tweets = new_tweets
+      @tweets = @all_tweets - @new_tweets
       @followings = followings
+      update_acquisition_time
     end
   end
 
@@ -30,5 +33,20 @@ class ToppagesController < ApplicationController
         screen_names << user[:screen_name]
       end
       screen_names
+    end
+
+    # タイムラインを最後に取得した時刻を記録する
+    def update_acquisition_time
+      user = User.find(current_user.id)
+      user.update(acquired_at: Time.now)
+    end
+
+    # 新着ツイートを返す
+    def new_tweets
+      new_tweets = []
+      @all_tweets.each do |tweet|
+        new_tweets << tweet if current_user.acquired_at.to_time < tweet[:created_at]
+      end
+      new_tweets
     end
 end
