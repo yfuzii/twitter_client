@@ -1,0 +1,19 @@
+<% unless saving?(tweet) %>
+  <%= form_for(current_user.likes.build) do |f| %>
+    <%= f.hidden_field :tweet_id, value: tweet.id %>
+    <%= f.hidden_field :name, value: tweet.user.name %>
+    <%= f.hidden_field :screen_name, value: tweet.user.screen_name %>
+    <%= f.hidden_field :image_url, value: tweet.user.profile_image_url_https %>
+    <%= f.hidden_field :text, value: tweet.text %>
+    <%= f.hidden_field :count_retweets, value: tweet.retweet_count %>
+    <%= f.hidden_field :count_likes, value: tweet.favorite_count %>
+    <%= f.hidden_field :posted_at, value: tweet.created_at.to_s %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit "Save", class: 'btn btn-default' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.likes.find_by(tweet_id: tweet.id), html: { method: :delete }) do |f| %>
+    <%= f.hidden_field :tweet_id, value: tweet.id %>
+    <%= f.submit "Saved", class: 'btn btn-info' %>
+  <% end %>
+<% end %>

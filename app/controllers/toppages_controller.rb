@@ -23,16 +23,6 @@ class ToppagesController < ApplicationController
 
   private
 
-    # OAuth認証の設定
-    def client_new
-      @client = Twitter::REST::Client.new do |config|
-        config.consumer_key = Rails.application.secrets.twitter_api_key
-        config.consumer_secret = Rails.application.secrets.twitter_api_secret
-        config.access_token = session[:oauth_token]
-        config.access_token_secret = session[:oauth_token_secret]
-      end
-    end
-
     # フォローしているユーザーの screen_name (@以下の部分) を返す
     def followings
       screen_names = []

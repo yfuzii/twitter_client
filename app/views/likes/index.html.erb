@@ -1,0 +1,22 @@
+<div class="text-center">
+    <h2><%= "@#{@user.screen_name} Likes #{current_user.likes.count} Tweets." %></h2>
+</div>
+<% if @likes %>
+  <div class="col-md-9 pull-right">
+    <% @likes.each do |like| %>
+      <div class="post-panel well well-sm">
+        <div class="tweet-image">
+          <%= link_to image_tag("#{like.image_url}"), "https://twitter.com/#{like.screen_name}", :target=>["_blank"] %>
+        </div>
+        <div class="post">
+          <%= like.name %> @<%= like.screen_name %><br>
+          <%= like.text %><br>
+          RT <%= like.count_retweets %> Like <%= like.count_likes %>
+          <%= link_to like.posted_at, "https://twitter.com/#{like.screen_name}/status/#{like.tweet_id}", :target=>["_blank"] %><br>
+          <%= render 'likes/save_button', like: like %>
+        </div>
+      </div>
+    <% end %>
+    <%= paginate @likes %>
+  </div>
+<% end %>

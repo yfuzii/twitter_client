@@ -74,3 +74,6 @@ gem 'pry-byebug'
 
 # Environment variables
 gem 'dotenv-rails'
+
+# Pagination
+gem 'kaminari'

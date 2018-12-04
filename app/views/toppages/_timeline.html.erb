@@ -15,7 +15,8 @@
             <% end %>
           </div>
           RT <%= tweet.retweet_count %> Like <%= tweet.favorite_count %><br>
-          <%= link_to tweet.created_at, "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}", :target=>["_blank"] %><br>
+          <%= link_to tweet.created_at, "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}", :target=>["_blank"] %>
+          <%= render 'toppages/save_button', tweet: tweet %>
         </div>
       </div>
     <% end %>
