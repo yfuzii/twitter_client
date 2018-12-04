@@ -5,7 +5,20 @@ class ToppagesController < ApplicationController
     if current_user
       @user = @client.user
       @tweets = @client.home_timeline(include_entitles: true)
+      @followings = followings
     end
+  end
+
+  def follow
+    @client.follow(params[:screen_name])
+    flash[:success] = "@#{params[:screen_name]} をフォローしました。"
+    redirect_to root_path
+  end
+
+  def unfollow
+    @client.unfollow(params[:screen_name])
+    flash[:success] = "@#{params[:screen_name]} のフォローを解除しました。"
+    redirect_to root_path
   end
 
   private
@@ -18,5 +31,14 @@ class ToppagesController < ApplicationController
         config.access_token = session[:oauth_token]
         config.access_token_secret = session[:oauth_token_secret]
       end
+    end
+
+    # フォローしているユーザーの screen_name (@以下の部分) を返す
+    def followings
+      screen_names = []
+      @client.friends.attrs[:users].each do |user|
+        screen_names << user[:screen_name]
+      end
+      screen_names
     end
 end
