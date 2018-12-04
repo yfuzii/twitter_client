@@ -1,0 +1,11 @@
+<div class="well well-sm">
+  <u><h4>Thanks for signing up!</h4></u>
+  <h4>Who to follow</h4>
+  <% Constants::RECOMMENDED_USERS.each do |user| %>
+    <%= image_tag(user[:image_url]) %>
+    <%= "#{user[:name]}" %>
+    <%= "@#{user[:screen_name]}" %>
+    <br>
+    <br>
+  <% end %>
+</div>
