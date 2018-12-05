@@ -1,5 +1,8 @@
 <meta http-equiv="refresh" content="90;URL=<%= root_url %>">
 <% if current_user %>
+  <% unless @new_tweets.empty? %>
+    <% provide(:count_new_tweets, "(#{@new_tweets.count}) ") %>
+  <% end %>
   <div class="col-md-3 container sidebar">
     <%= render 'toppages/profile' %>
     <% if first_login? %>
