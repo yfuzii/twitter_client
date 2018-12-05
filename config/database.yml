@@ -22,4 +22,7 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: dai22bu5edqq56
+  username: fjyenhicltlhlw
+  password: <%= ENV['TWTR_CLIENT_DATABASE_PASSWORD'] %>
