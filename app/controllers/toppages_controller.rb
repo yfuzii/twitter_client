@@ -44,8 +44,10 @@ class ToppagesController < ApplicationController
     # 新着ツイートを返す
     def new_tweets
       new_tweets = []
-      @all_tweets.each do |tweet|
-        new_tweets << tweet if current_user.acquired_at.to_time < tweet[:created_at]
+      unless current_user.acquired_at.nil?
+        @all_tweets.each do |tweet|
+          new_tweets << tweet if current_user.acquired_at.to_time < tweet[:created_at]
+        end
       end
       new_tweets
     end
